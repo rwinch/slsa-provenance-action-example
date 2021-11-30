@@ -1,0 +1,4 @@
+rootProject.name = 'slsa-provenance-action-example'
+
+include ':slsa-example-core'
+include ':slsa-example-web'

@@ -1,0 +1,28 @@
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          cache: 'gradle'
+      - run: ./gradlew assemble
+      - name: Generate provenance for Release
+        uses: philips-labs/slsa-provenance-action@v0.4.0
+        with:
+          artifact_path: slsa-example-core/build/libs
+          output_path: 'provenance.json'
+          tag_name: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Upload provenance
+        uses: actions/upload-artifact@v2
+        with:
+          path: provenance.json
