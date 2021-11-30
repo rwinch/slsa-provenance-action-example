@@ -24,7 +24,6 @@ jobs:
         with:
           artifact_path: artifacts
           output_path: 'provenance.json'
-          tag_name: ${{ github.ref_name }}
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: Upload provenance
