@@ -14,11 +14,6 @@ jobs:
           distribution: 'adopt-hotspot'
           java-version: '11'
           cache: 'gradle'
-      - run: ./gradlew assemble
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          path: '**/build/libs/*.jar'
       - name: Generate provenance for Release
         uses: philips-labs/slsa-provenance-action@v0.4.0
         with:
