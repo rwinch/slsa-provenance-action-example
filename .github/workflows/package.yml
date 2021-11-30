@@ -22,7 +22,7 @@ jobs:
       - name: Generate provenance for Release
         uses: philips-labs/slsa-provenance-action@v0.4.0
         with:
-          artifact_path: artifacts
+          artifact_path: slsa-example-core/build/libs
           output_path: 'provenance.json'
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
