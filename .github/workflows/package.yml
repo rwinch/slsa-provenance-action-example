@@ -14,6 +14,8 @@ jobs:
           distribution: 'adopt-hotspot'
           java-version: '11'
           cache: 'gradle'
+      - run: ./gradlew assemble
+      - run: find -name "*.jar"
       - name: Generate provenance for Release
         uses: philips-labs/slsa-provenance-action@v0.4.0
         with:
