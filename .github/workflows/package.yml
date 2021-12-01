@@ -14,12 +14,11 @@ jobs:
           distribution: 'adopt-hotspot'
           java-version: '11'
           cache: 'gradle'
-      - run: ./gradlew assemble
-      - run: find -name "*.jar"
+      - run: ./gradlew publish
       - name: Generate provenance for Release
         uses: philips-labs/slsa-provenance-action@v0.4.0
         with:
-          artifact_path: slsa-example-core/build/libs
+          artifact_path: build/artifacts
           output_path: 'provenance.json'
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
